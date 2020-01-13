@@ -14,7 +14,8 @@ class AdminMarcasController extends CBController {
         $this->addDatetime("Alta","created_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addDatetime("Actualizada","updated_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addText("Marca","marca")->strLimit(150)->maxLength(255);
-		$this->addImage("Foto","foto")->required(false)->showIndex(false)->encrypt(true)->resize(150);
+		$this->addImage("Foto","foto")->required(false)->encrypt(true)->resize(150);
+		$this->addWysiwyg("Detalle","detalle")->required(false)->showIndex(false);
 		
 
     }

@@ -13,13 +13,13 @@ class AdminEntradasController extends CBController {
 
         $this->addDatetime("Alta","created_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addDatetime("Actualizado","updated_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
-		$this->addDatetime("Fecha de ingreso","ingreso_fecha")->format('d-m-Y H:i:s');
+		$this->addDatetime("Fecha de ingreso","ingreso_fecha")->format('d-m-Y H:i');
 		$this->addText("Observaciones de ingreso","ingreso_observaciones")->strLimit(150)->maxLength(5000);
-		$this->addSelectOption("Estado","estado")->options(['reservado'=>'Reservado','recibido'=>'Recibido','presupuestado'=>'Presupuestado','rechazado'=>'Presupuesto Rechazado','aprobado'=>'Presupuesto Aprobado','reparado'=>'Reparado','sin_reparacion'=>'Sin Reparación','entregado'=>'Entregado']);
-		$this->addImage("Fotos","fotos")->showIndex(false);
-		$this->addDatetime("Fecha de egreso","egreso_fecha")->format('d-m-Y H:i:s');
-		$this->addText("Observaciones de egreso","egreso_observaciones")->strLimit(150)->maxLength(5000);
-		$this->addSelectTable("Vehículo","vehiculo",["table"=>"vehiculos","value_option"=>"id","display_option"=>"patente","sql_condition"=>""]);
+		$this->addText("Estado","estado")->strLimit(150)->maxLength(255);
+		$this->addImage("Foto","foto")->showIndex(false);
+		$this->addDatetime("Fecha de egreso","egreso_fecha")->required(false)->format('d-m-Y H:i');
+		$this->addText("Observaciones de egreso","egreso_observaciones")->required(false)->strLimit(150)->maxLength(5000);
+		$this->addSelectTable("Vehículo","vehiculo_id",["table"=>"vehiculos","value_option"=>"id","display_option"=>"patente","sql_condition"=>""]);
 		
 
     }
