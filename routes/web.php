@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['middleware' => ['web',\crocodicstudio\crudbooster\middlewares\CBDeveloper::class],
+    'prefix'=>"admin/",
+    'namespace' => 'crocodicstudio\crudbooster\controllers'], function () {
+
+    cb()->routeController("users","\crocodicstudio\crudbooster\controllers\DeveloperUsersController");
+
+
+
+});

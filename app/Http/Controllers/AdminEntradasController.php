@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use crocodicstudio\crudbooster\controllers\CBController;
+use DB;
 
 class AdminEntradasController extends CBController {
 
@@ -26,18 +27,24 @@ class AdminEntradasController extends CBController {
               //"Cliente"=> $row->users_name,
               //"Created"=> date("d/m/Y H:i", strtotime($row->created_at)),
               //"Vehículo" => "{$row->marcas_marca} - {$row->modelos_modelo} ({$row->vehiculos_tipos_tipo})" ,
-              //"Patente"=> $row->patente,
+              "Patente"=> $row->vehiculos_patente,
+              /*"Marca" => DB::table('vehiculos')
+              ->join('marcas', 'vehiculos.marca_id', '=', 'marcas.id')
+              ->select('marcas.marca')
+              ->where('vehiculos.id','=',$row->vehiculo_id)->first()*/
             ];
         });
-        $this->hookIndexQuery(function($query) {
+
+            //->join('vehiculos_tipo', 'vehiculos.marca_id', '=', 'marcas.id');
+        /*$this->hookIndexQuery(function($query) {
             // Todo: code query here
 
             // You can make query like laravel db builder
-            //$query->join('vehiculos', 'entradas.vehiculos_id', '=', 'vehiculos.id');
-
+            $query->join('marcas', 'vehiculos.marca_id', '=', 'marcas.id');
+            $query->select('entradas.*', 'vehiculos.*',  DB::raw('CONCAT(marcas.marca, " ", vehiculos.patente) AS vehiculos_patente'));
             // Don't forget to return back
             return $query;
-        });
+        });*/
 
     }
 }
